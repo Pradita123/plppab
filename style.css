@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.header h1 {
+    font-size: 24px;
+}
+.header p {
+    margin: 5px 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+th {
+    background-color: #f2f2f2;
+}
+.signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.signature {
+    width: 30%;
+    text-align: center;
+}
+.signature p {
+    margin: 150px 0 5px;
+    
+}
+.wide-space {
+    border-top: 1px solid black;
+ }
+.note {
+    font-size: 0.9em;
+    margin-top: 20px;
+}
+.info-box {
+    background-color: #2d3436;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 0.9em;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: none; /* Remove all borders initially */
+}
+th {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #000; /* Keep bottom border for headers */
+}
+/* Adding vertical borders only for cells */
+td:not(:last-child), th:not(:last-child) {
+    border-right: 1px solid #000;
+}
+/* Adjust column widths */
+.no {
+    width: 5%;
+}
+.uraian {
+    width: 25%;
+}
+.harga-satuan, .anggaran {
+    width: 20%;
+}
+

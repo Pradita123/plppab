@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Form PPAB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            height: 100vh; /* Full height for the sidebar */
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            width: 250px; /* Fixed width for sidebar */
+            background-color: #343a40; /* Sidebar background color */
+            color: white; /* Text color */
+            padding: 20px; /* Padding */
+            position: fixed; /* Fixed position */
+            height: 100%; /* Full height */
+            overflow-y: auto; /* Scrollable if needed */
+        }
+
+        .sidebar a {
+            color: #ffffff; /* Link color */
+            text-decoration: none; /* Remove underline */
+            padding: 10px; /* Padding for links */
+            display: block; /* Block display */
+            margin-bottom: 5px; /* Space between links */
+        }
+
+        .sidebar a:hover {
+            background-color: #495057; /* Hover background color */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .content {
+            margin-left: 270px; /* Space for the sidebar */
+            padding: 20px; /* Padding for content area */
+            flex-grow: 1; /* Allow content to grow */
+        }
+
+        .card {
+            border: 2px solid #0d6efd;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .card-body {
+            background: #f8f9fa;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .form-control::placeholder {
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .shadow {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function calculateTotal() {
+            const hargaSatuan = parseFloat(document.getElementById('harga_satuan').value.replace(/\./g, '')) || 0;
+            const jumlahUnit = parseFloat(document.getElementById('jumlah_unit').value) || 0;
+            const total = hargaSatuan * jumlahUnit;
+            document.getElementById('total_amount').value = total.toLocaleString('id-ID');
+        }
+
+        function formatRupiah(input) {
+            let value = input.value.replace(/\./g, '');
+            value = parseInt(value, 10).toLocaleString('id-ID');
+            input.value = value;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h4>Menu</h4>
+        <a href="rekap_ppab.php" class="btn btn-primary">Back</a>
+    </div>
+
+    <div class="content">
+        <div class="container mt-5">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Form PPAB</h2>
+                    <form action="submit_ppab.php" method="post">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="unit_kerja" class="form-label">Unit Kerja:</label>
+                                <input type="text" id="unit_kerja" name="unit_kerja" class="form-control" placeholder="Masukkan Unit Kerja" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="divisi_bagian" class="form-label">Divisi/Bagian:</label>
+                                <input type="text" id="divisi_bagian" name="divisi_bagian" class="form-control" placeholder="Masukkan Divisi/Bagian" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="perihal" class="form-label">Perihal:</label>
+                                <input type="text" id="perihal" name="perihal" class="form-control" placeholder="Masukkan Perihal" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nomor_ppab" class="form-label">Nomor PPAB:</label>
+                                <input type="text" id="nomor_ppab" name="nomor_ppab" class="form-control" placeholder="Masukkan Nomor PPAB" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal:</label>
+                            <input type="date" id="tanggal" name="tanggal" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="uraian" class="form-label">Uraian:</label>
+                            <input type="text" id="uraian" name="uraian" class="form-control" placeholder="Deskripsi singkat" required>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="satuan" class="form-label">Satuan:</label>
+                                <input type="text" id="satuan" name="satuan" class="form-control" placeholder="Masukkan Satuan" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="harga_satuan" class="form-label">Harga Satuan:</label>
+                                <input type="text" id="harga_satuan" name="harga_satuan" class="form-control" placeholder="Rp" required oninput="formatRupiah(this); calculateTotal();">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="jumlah_unit" class="form-label">Jumlah Unit:</label>
+                                <input type="number" id="jumlah_unit" name="jumlah_unit" class="form-control" placeholder="Masukkan Jumlah" required oninput="calculateTotal()">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sisa_anggaran" class="form-label">Sisa Anggaran:</label>
+                            <input type="text" id="sisa_anggaran" name="sisa_anggaran" class="form-control" placeholder="Rp" required oninput="formatRupiah(this)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="capaian_percent" class="form-label">Capaian (%):</label>
+                            <input type="number" id="capaian_percent" name="capaian_percent" class="form-control" placeholder="Masukkan Persentase" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="anggaran_pengeluaran" class="form-label">Anggaran Pengeluaran:</label>
+                            <input type="text" id="anggaran_pengeluaran" name="anggaran_pengeluaran" class="form-control" placeholder="Rp" required oninput="formatRupiah(this)">
+                        </div>
+
+                        <!-- New Total Amount Field -->
+                        <div class="mb-3">
+                            <label for="total_amount" class="form-label">Total Amount:</label>
+                            <input type="text" id="total_amount" name="total_amount" class="form-control" placeholder="Rp" readonly>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
